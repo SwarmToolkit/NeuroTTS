@@ -30,7 +30,7 @@ jobs:
       - name: Create ZIP package
         run: |
           mkdir output
-          Copy-Item "NeuroTTS\bin\Release\*" -Destination output -Recurse
+          Copy-Item "bin\Release\*" -Destination output -Recurse
           Compress-Archive -Path output\* -DestinationPath NeuroTTS.zip
 
       # 6. 发布到 GitHub Release
