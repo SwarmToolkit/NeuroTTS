@@ -20,11 +20,11 @@ jobs:
 
       # 3. 还原 NuGet 依赖
       - name: Restore NuGet packages
-        run: nuget restore YourSolution.sln
+        run: nuget restore NeuroTTS.sln
 
       # 4. 编译项目
       - name: Build with MSBuild
-        run: msbuild YourSolution.sln /p:Configuration=Release
+        run: msbuild NeuroTTS.sln /p:Configuration=Release
 
       # 5. 打包成 ZIP（假设输出在 bin\Release）
       - name: Create ZIP package
