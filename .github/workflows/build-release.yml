@@ -1,5 +1,8 @@
 name: Build & Release .NET Framework WinForms
 
+permissions:
+  contents: write
+
 on:
   push:
     tags:
