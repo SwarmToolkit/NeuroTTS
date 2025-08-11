@@ -27,20 +27,25 @@ namespace NeuroTTS
             }
             string ssml = "<speak version='1.0' xml:lang='en-US'><voice name='en-US-AshleyNeural'><express-as style='chat'><prosody pitch='+25%'>Hello! I'm Neuro. Someone tell vedal there is a problem with my AI.</prosody></express-as></voice></speak>";
             SpeechConfig speechConfig = SpeechConfig.FromSubscription(textBox2.Text, textBox1.Text);
+            button1.Enabled = false;
             using (SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer(speechConfig))
             {
                 SpeechSynthesisResult result = speechSynthesizer.SpeakSsmlAsync(ssml).Result;
                 if (result.Reason == ResultReason.SynthesizingAudioCompleted)
                 {
+                    button1.Enabled = true;
                     MessageBox.Show("Test successful!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Settings.Default.REGION = textBox1.Text;
                     Settings.Default.API_KEY = textBox2.Text;
                     Settings.Default.Save();
-                    MessageBox.Show("Setup complete!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // MessageBox.Show("Setup complete!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
                 }
                 else
                 {
+                    button1.Enabled = true;
                     MessageBox.Show("Test failed: " + result.Reason.ToString(), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
             }
         }
